@@ -1,6 +1,6 @@
 @startuml ExampleTree
 
-title Robbing a House For Food
+title Robbing a House For Foo
 
 state "selector" as selector1
 state "sequence" as sequence1
