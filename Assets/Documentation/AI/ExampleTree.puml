@@ -1,0 +1,29 @@
+@startuml ExampleTree
+
+title Robbing a House For Food
+
+state "selector" as selector1
+state "sequence" as sequence1
+state "selector" as selector2
+state "open door" as openDoor1
+state "break door" as breakDoor1
+state "open window" as openWindow1
+state "break window" as breakWindow1
+state "enter house" as enterHouse1
+state "find food" as findFood1
+state "leave house" as leaveHouse1
+state "leave house" as leaveHouse2
+
+root -down-> selector1
+    selector1 -down-> sequence1
+        sequence1 -down-> selector2
+            selector2 -down-> openDoor1
+            selector2 -down-> breakDoor1
+            selector2 -down-> openWindow1
+            selector2 -down-> breakWindow1
+        sequence1 -down-> enterHouse1
+        sequence1 -down-> findFood1
+        sequence1 -down-> leaveHouse1
+    selector1 -down-> leaveHouse2
+
+@enduml

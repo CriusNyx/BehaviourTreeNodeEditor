@@ -1,0 +1,6 @@
+@startuml NodeEditorGUISequenceDiagram
+
+OnGUI -> DrawWindows
+DrawWindows -> EndWindows
+
+@enduml
