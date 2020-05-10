@@ -27,9 +27,37 @@ For AI, Argument arguments are used to get arguments from the parameters for a p
 Params arguments are used to map "params" parameters in method calls. Params options for a method can be specified using the ParamsDataSourceAttribute
 
 ``` c#
+// This example class shows an example class with a bindable method and params
+// argument
+public class ExampleClass{
 
-void SomeMethodWithParams(params object[] parameters){
-    
+    // This method has a params arguments and
+    // takes in two other arguments, t and u
+    [MyMethodBindingAttribute]
+    // The params data source attribute tells the runtime where to argument
+    // information (types and names of valid arguments) for the params
+    [ParamsDataSource(typeof(ExampleClass), nameof(SomeParamsDataSourceMethod))]
+    void SomeMethodWithParams(
+        T t, 
+        U u, 
+        params (Type argType, string argName)[] parameters)
+    {
+
+    }
+
+    // This method returns valid parameters for the previous method.
+    // Notice that t and u are passed in. 
+    // These will match the t and u specified for the previous method.
+    // This allows you to make params depend on the values of t and u.
+    static IEnumerable<(Type argumentType, string argumentName)> 
+    SomeParamsDataSourceMethod(
+        T t, 
+        U u)
+    {
+        yield return (T1, arg1);
+        yield return (T2, arg2);
+    }
 }
-
 ```
+
+For AI, params can be used for any method call, but are used mostly for calling other ai trees as subroutines.
