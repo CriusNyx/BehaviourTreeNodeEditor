@@ -14,6 +14,6 @@ public abstract class NodeEditorGUIControl
         Parent = parent;
     }
 
-    public abstract void OnGUI(NodeEditorWindow nodeEditor, int id);
-    public abstract void ProcessEvents(NodeEditorWindow nodeEditor);
+    public abstract void OnGUI(NodeEditor nodeEditor, int id);
+    public abstract void ProcessEvents(NodeEditor nodeEditor);
 }

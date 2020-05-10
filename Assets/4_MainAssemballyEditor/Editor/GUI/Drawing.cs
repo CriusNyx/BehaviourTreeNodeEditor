@@ -70,4 +70,15 @@ public class Drawing
         GUI.matrix = matrix;
         GUI.color = savedColor;
     }
+
+    public static void DrawBezier(Vector2[] keys, int resolution, float width = 1f) => DrawBezier(keys, resolution, Color.white, width);
+
+    public static void DrawBezier(Vector2[] keys, int resolution, Color color, float width = 1f)
+    {
+        Vector2[] bezier = Bezier.GetBezier2(keys, resolution);
+        foreach ((var a, var b) in bezier.ForeachElementAndNext())
+        {
+            DrawLine(a, b, color, width);
+        }
+    }
 }

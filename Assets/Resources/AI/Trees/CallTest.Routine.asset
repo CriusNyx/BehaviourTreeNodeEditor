@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cfd38aa13d3a2a48a83e0717eed7c52, type: 3}
+  m_Name: CallTest.Routine
+  m_EditorClassIdentifier: 
+  definition:
+    id: 0
+  root:
+    id: 1
+  sourceFileName: Assets/Resources/AI/Trees/CallTest.asset
+  references:
+    version: 1
+    00000000:
+      type: {class: AITreeDefinition, ns: , asm: MainAssembally}
+      data:
+        name: Routine
+        arguments: []
+    00000001:
+      type: {class: AITreeNode, ns: , asm: MainAssembally}
+      data:
+        methodBinding:
+          className: BaseAIBehaviours
+          methodName: Call
+          arguments:
+          - id: 2
+          - id: 3
+        children: []
+        guid: 62989493
+    00000002:
+      type: {class: StaticMethodBindingArgument, ns: , asm: MainAssembally}
+      data:
+        argName: asset
+        argValue:
+          id: 4
+    00000003:
+      type: {class: ParamsMethodBindingArgument, ns: , asm: MainAssembally}
+      data:
+        argName: arguments
+        names:
+        - Message
+        arguments:
+        - id: 5
+    00000004:
+      type: {class: UnityEngineObjectWrapper, ns: , asm: MainAssembally}
+      data:
+        value: {fileID: 11400000, guid: 3f6e65cbbe880c848ba182dea23ab52c, type: 2}
+    00000005:
+      type: {class: StaticMethodBindingArgument, ns: , asm: MainAssembally}
+      data:
+        argName: Message
+        argValue:
+          id: 6
+    00000006:
+      type: {class: StringWrapper, ns: , asm: MainAssembally}
+      data:
+        value: This is a message

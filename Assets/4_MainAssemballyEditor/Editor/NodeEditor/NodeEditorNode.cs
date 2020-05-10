@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections;
+﻿using Scripts.Extensions;
+using System;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEngine;
-using Scripts.Extensions;
 using UnityEditor.NodeEditor;
+using UnityEngine;
 
 [Serializable]
 public class NodeEditorNode
 {
-    private Rect windowRect = new Rect(20, 20, 200, 100);
+    [SerializeField]
+    public Rect windowRect = new Rect(0, 0, 400, 200);
 
     [SerializeReference]
     private NodeEditorDropBox dropBox;
@@ -20,41 +20,81 @@ public class NodeEditorNode
     private NodeEditorGrabBox openBox;
 
     [SerializeReference]
-    public TreeNode nodeObject;
+    public object data;
+
+    [SerializeField]
+    private long guid = -1;
+
+    public long GUID => guid;
 
     public Vector2 Position { get; private set; }
 
-    public NodeEditorNode()
+    private bool resizeMode = false;
+
+    public NodeEditorNode(long guid)
     {
+        this.guid = guid;
         dropBox = new NodeEditorDropBox(this);
     }
 
-    public NodeEditorNode(Vector2 spawnPosition) : this()
+    public NodeEditorNode(Vector2 spawnPosition, long guid) : this(guid)
     {
-        windowRect = new Rect(spawnPosition.x, spawnPosition.y, 120, 100);
+        this.windowRect = this.windowRect.Translate(spawnPosition);
     }
 
-    private void DrawGUI(int windowNumber, Vector3 cameraPosition, NodeEditorWindow nodeEditor)
+    public void SetGUID(long guid)
     {
-        windowRect = 
+        if(this.guid == -1)
+        {
+            this.guid = guid;
+        }
+    }
+
+    public void ClearGUID()
+    {
+        this.guid = -1;
+    }
+
+    public NodeEditorNode[] GetChildren()
+    {
+        List<NodeEditorNode> output = new List<NodeEditorNode>();
+        foreach(var grabBox in grabBoxes)
+        {
+            NodeEditorNode other = grabBox?.DropBox?.Parent;
+            if(other != null)
+            {
+                output.Add(other);
+            }
+        }
+        return output.ToArray();
+    }
+
+    private void DrawGUI(int windowNumber, Vector3 cameraPosition, NodeEditor nodeEditor)
+    {
+        windowRect =
             GUI.Window(
                 windowNumber,
                 windowRect.Translate(cameraPosition),
                 (x) => { BaseDrawContents(x, nodeEditor); },
-                "Foo")
+                data?.ToString())
             .Translate(-cameraPosition);
     }
 
-    private void BaseDrawContents(int id, NodeEditorWindow nodeEditor)
+    private void BaseDrawContents(int id, NodeEditor nodeEditor)
     {
         DrawDropBoxes(id, nodeEditor);
         DrawInteriorGUI();
         DrawGrabBoxes(id, nodeEditor);
 
-        GUI.DragWindow();
+        var resizeBox = DrawResizeBox();
+
+        ProcessMyEvents(nodeEditor, resizeBox);
+
+        if (!resizeMode)
+            GUI.DragWindow();
     }
 
-    private void DrawDropBoxes(int id, NodeEditorWindow nodeEditor)
+    private void DrawDropBoxes(int id, NodeEditor nodeEditor)
     {
         RemoveUnusedDropBoxes();
         DrawOpenBox();
@@ -64,24 +104,31 @@ public class NodeEditorNode
         Position = new Vector2(windowRect.x, windowRect.y);
     }
 
+    private Rect DrawResizeBox()
+    {
+        Vector2 resizeSize = Vector2.one * 20;
+        var output = new Rect(windowRect.size - resizeSize * 1.2f, resizeSize);
+        GUI.Box(output, "");
+        return output;
+    }
+
     protected virtual void DrawInteriorGUI()
     {
         GUILayout.Space(5);
 
-        if (nodeObject is ChildNode childNode)
+        if (data != null)
         {
-            GUILayout.BeginHorizontal();
+            var output = GenericCustomEditors.DrawCustomEditor(data, out bool success);
+            if (success)
             {
-                GUILayout.Label(nameof(childNode.test));
-                childNode.test = EditorGUILayout.TextField(childNode.test);
+                data = output;
             }
-            GUILayout.EndHorizontal();
         }
 
         GUILayout.Space(5);
     }
 
-    private void DrawGrabBoxes(int id, NodeEditorWindow nodeEditor)
+    private void DrawGrabBoxes(int id, NodeEditor nodeEditor)
     {
         GUILayout.BeginHorizontal();
         {
@@ -113,24 +160,59 @@ public class NodeEditorNode
         }
     }
 
-    private void DrawDropBox(int id, NodeEditorWindow nodeEditor)
+    private void DrawDropBox(int id, NodeEditor nodeEditor)
     {
         dropBox.OnGUI(nodeEditor, id);
     }
 
-    private void ProcessEditorEvents(NodeEditorWindow nodeEditor)
+    private void ProcessMyEvents(NodeEditor nodeEditor, Rect sizeBox)
+    {
+        switch (Event.current.type)
+        {
+            case EventType.MouseDown:
+                {
+                    nodeEditor.activeControlSet.Set<NodeEditorNode>(this);
+                    if (sizeBox.Contains(Event.current.mousePosition))
+                    {
+                        resizeMode = true;
+                    }
+                }
+                break;
+            case EventType.MouseDrag:
+                {
+                    if (resizeMode)
+                    {
+                        windowRect = new Rect(windowRect.position, windowRect.size + Event.current.delta);
+                        Event.current.Use();
+                    }
+                }
+                break;
+            case EventType.MouseUp:
+                {
+                    resizeMode = false;
+                }
+                break;
+        }
+    }
+
+    private void ProcessEditorEvents(NodeEditor nodeEditor)
     {
         dropBox.ProcessEvents(nodeEditor);
 
-        foreach(var box in grabBoxes)
+        foreach (var box in grabBoxes)
         {
             box.ProcessEvents(nodeEditor);
         }
         openBox.ProcessEvents(nodeEditor);
     }
 
-    public static void DrawAllNodes(Rect groupPosition, IList<NodeEditorNode> nodes, NodeEditorWindow nodeEditorWindow, Vector3 cameraPosition)
+    public static void DrawAllNodes(Rect groupPosition, IList<NodeEditorNode> nodes, NodeEditor nodeEditorWindow, Vector3 cameraPosition)
     {
+        float oldLabelWidth = EditorGUIUtility.labelWidth;
+        EditorGUIUtility.labelWidth = 75;
+
+        GUI.Box(groupPosition, "");
+
         GUI.BeginGroup(groupPosition);
         {
             nodeEditorWindow.BeginWindows();
@@ -146,5 +228,7 @@ public class NodeEditorNode
         {
             node.ProcessEditorEvents(nodeEditorWindow);
         }
+
+        EditorGUIUtility.labelWidth = oldLabelWidth;
     }
 }

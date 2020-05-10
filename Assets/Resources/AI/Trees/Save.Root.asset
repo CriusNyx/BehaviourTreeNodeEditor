@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cfd38aa13d3a2a48a83e0717eed7c52, type: 3}
+  m_Name: Save.Root
+  m_EditorClassIdentifier: 
+  root:
+    id: 0
+  sourceFileName: Assets/Resources/AI/Trees/Save.asset
+  references:
+    version: 1
+    00000000:
+      type: {class: AITreeNode, ns: , asm: MainAssembally}
+      data:
+        methodBinding:
+          className: BaseAIBehaviours
+          methodName: Sequence
+          arguments: []
+        children:
+        - id: 1
+        - id: 2
+        - id: 3
+        guid: 94750330
+    00000001:
+      type: {class: AITreeNode, ns: , asm: MainAssembally}
+      data:
+        methodBinding:
+          className: BaseAIBehaviours
+          methodName: Running
+          arguments:
+          - id: 4
+        children:
+        - id: 5
+        guid: 21098840
+    00000002:
+      type: {class: AITreeNode, ns: , asm: MainAssembally}
+      data:
+        methodBinding:
+          className: BaseAIBehaviours
+          methodName: Succeed
+          arguments: []
+        children: []
+        guid: 890140044
+    00000003:
+      type: {class: AITreeNode, ns: , asm: MainAssembally}
+      data:
+        methodBinding:
+          className: BaseAIBehaviours
+          methodName: Sequence
+          arguments: []
+        children:
+        - id: 6
+        - id: 7
+        - id: 8
+        guid: 99610560
+    00000004:
+      type: {class: StaticMethodBindingArgument, ns: , asm: MainAssembally}
+      data:
+        argName: frameCount
+        argValue:
+          id: 9
+    00000005:
+      type: {class: AITreeNode, ns: , asm: MainAssembally}
+      data:
+        methodBinding:
+          className: BaseAIBehaviours
+          methodName: Succeed
+          arguments: []
+        children: []
+        guid: 1017220171
+    00000006:
+      type: {class: AITreeNode, ns: , asm: MainAssembally}
+      data:
+        methodBinding:
+          className: BaseAIBehaviours
+          methodName: Succeed
+          arguments: []
+        children: []
+        guid: 1055588757
+    00000007:
+      type: {class: AITreeNode, ns: , asm: MainAssembally}
+      data:
+        methodBinding:
+          className: BaseAIBehaviours
+          methodName: Running
+          arguments:
+          - id: 10
+        children:
+        - id: 11
+        guid: 2031218576
+    00000008:
+      type: {class: AITreeNode, ns: , asm: MainAssembally}
+      data:
+        methodBinding:
+          className: BaseAIBehaviours
+          methodName: Succeed
+          arguments: []
+        children: []
+        guid: 1699060573
+    00000009:
+      type: {class: IntWrapper, ns: , asm: MainAssembally}
+      data:
+        value: 1
+    0000000A:
+      type: {class: StaticMethodBindingArgument, ns: , asm: MainAssembally}
+      data:
+        argName: frameCount
+        argValue:
+          id: 12
+    0000000B:
+      type: {class: AITreeNode, ns: , asm: MainAssembally}
+      data:
+        methodBinding:
+          className: BaseAIBehaviours
+          methodName: Succeed
+          arguments: []
+        children: []
+        guid: 523046161
+    0000000C:
+      type: {class: IntWrapper, ns: , asm: MainAssembally}
+      data:
+        value: 1

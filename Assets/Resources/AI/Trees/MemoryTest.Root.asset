@@ -1,0 +1,152 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cfd38aa13d3a2a48a83e0717eed7c52, type: 3}
+  m_Name: MemoryTest.Root
+  m_EditorClassIdentifier: 
+  definition:
+    id: 0
+  root:
+    id: 1
+  sourceFileName: Assets/Resources/AI/Trees/MemoryTest.asset
+  references:
+    version: 1
+    00000000:
+      type: {class: AITreeDefinition, ns: , asm: MainAssembally}
+      data:
+        name: Root
+        arguments:
+        - typeWrapper:
+            enumClass: UnityTypes
+            enumValue: Vector3
+          value: Position
+        - typeWrapper:
+            enumClass: SystemType
+            enumValue: Float
+          value: Rotation
+    00000001:
+      type: {class: AITreeNode, ns: , asm: MainAssembally}
+      data:
+        methodBinding:
+          className: BaseAIBehaviours
+          methodName: Sequence
+          arguments: []
+        children:
+        - id: 2
+        - id: 3
+        guid: 1508751619
+    00000002:
+      type: {class: AITreeNode, ns: , asm: MainAssembally}
+      data:
+        methodBinding:
+          className: BaseAIBehaviours
+          methodName: PrintMemoryCell
+          arguments:
+          - id: 4
+        children: []
+        guid: 677499978
+    00000003:
+      type: {class: AITreeNode, ns: , asm: MainAssembally}
+      data:
+        methodBinding:
+          className: BaseAIBehaviours
+          methodName: Loop
+          arguments:
+          - id: 5
+        children:
+        - id: 6
+        guid: 213114346
+    00000004:
+      type: {class: MemoryMethodBindingArgument, ns: , asm: MainAssembally}
+      data:
+        argName: cell
+    00000005:
+      type: {class: StaticMethodBindingArgument, ns: , asm: MainAssembally}
+      data:
+        argName: count
+        argValue:
+          id: 7
+    00000006:
+      type: {class: AITreeNode, ns: , asm: MainAssembally}
+      data:
+        methodBinding:
+          className: BaseAIBehaviours
+          methodName: Running
+          arguments:
+          - id: 8
+          - id: 9
+        children:
+        - id: 10
+        guid: 1518524335
+    00000007:
+      type: {class: IntWrapper, ns: , asm: MainAssembally}
+      data:
+        value: 3
+    00000008:
+      type: {class: StaticMethodBindingArgument, ns: , asm: MainAssembally}
+      data:
+        argName: frameCount
+        argValue:
+          id: 11
+    00000009:
+      type: {class: StaticMethodBindingArgument, ns: , asm: MainAssembally}
+      data:
+        argName: timeCount
+        argValue:
+          id: 12
+    0000000A:
+      type: {class: AITreeNode, ns: , asm: MainAssembally}
+      data:
+        methodBinding:
+          className: BaseAIBehaviours
+          methodName: PrintMemoryCell
+          arguments:
+          - id: 13
+        children:
+        - id: 14
+        guid: 1919757741
+    0000000B:
+      type: {class: IntWrapper, ns: , asm: MainAssembally}
+      data:
+        value: 1
+    0000000C:
+      type: {class: FloatWrapper, ns: , asm: MainAssembally}
+      data:
+        value: 1
+    0000000D:
+      type: {class: MemoryMethodBindingArgument, ns: , asm: MainAssembally}
+      data:
+        argName: cell
+    0000000E:
+      type: {class: AITreeNode, ns: , asm: MainAssembally}
+      data:
+        methodBinding:
+          className: BaseAIBehaviours
+          methodName: Call
+          arguments:
+          - id: 15
+          - id: 16
+        children: []
+        guid: 1170031527
+    0000000F:
+      type: {class: StaticMethodBindingArgument, ns: , asm: MainAssembally}
+      data:
+        argName: asset
+        argValue:
+          id: 17
+    00000010:
+      type: {class: ParamsMethodBindingArgument, ns: , asm: MainAssembally}
+      data:
+        argName: arguments
+    00000011:
+      type: {class: UnityEngineObjectWrapper, ns: , asm: MainAssembally}
+      data:
+        value: {fileID: 11400000}
