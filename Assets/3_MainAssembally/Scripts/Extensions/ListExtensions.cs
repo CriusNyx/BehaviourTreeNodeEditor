@@ -15,5 +15,13 @@ namespace Scripts.Extensions
                 yield return (i, list[i]);
             }
         }
+
+        public static IEnumerable<(int index, T value)> Foreach<T>(this IReadOnlyList<T> list)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                yield return (i, list[i]);
+            }
+        }
     }
 }

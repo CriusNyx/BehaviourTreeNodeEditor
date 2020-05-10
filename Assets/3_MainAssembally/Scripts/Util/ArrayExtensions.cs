@@ -11,4 +11,19 @@ public static class ArrayExtensions
             yield return (array[i], array[i + 1]);
         }
     }
+
+    public static IEnumerable<(T element, T nextElement)> ForeachElementAndNext<T>(this IEnumerable<T> list)
+    {
+        var enumerator = list.GetEnumerator();
+        if (enumerator.MoveNext())
+        {
+            var last = enumerator.Current;
+            while (enumerator.MoveNext())
+            {
+                yield return (last, enumerator.Current);
+                last = enumerator.Current;
+            }
+        }
+        
+    }
 }

@@ -19,7 +19,7 @@ public class NodeEditorGrabBox : NodeEditorGUIControl
 
     }
 
-    public override void OnGUI(NodeEditorWindow nodeEditor, int windowID)
+    public override void OnGUI(NodeEditor nodeEditor, int windowID)
     {
         myRect = GUILayoutUtility.GetRect(10, 10);
         GUI.Box(myRect, "");
@@ -53,7 +53,7 @@ public class NodeEditorGrabBox : NodeEditorGUIControl
         }
     }
 
-    public override void ProcessEvents(NodeEditorWindow window)
+    public override void ProcessEvents(NodeEditor window)
     {
         if (window.activeControlSet.Get<NodeEditorGrabBox>() == this)
         {
@@ -69,7 +69,7 @@ public class NodeEditorGrabBox : NodeEditorGUIControl
         }
     }
 
-    public bool IsSelected(NodeEditorWindow window)
+    public bool IsSelected(NodeEditor window)
     {
         return window.activeControlSet.Get<NodeEditorGrabBox>() == this;
     }
@@ -77,6 +77,6 @@ public class NodeEditorGrabBox : NodeEditorGUIControl
     public void OnDrop(NodeEditorDropBox dropBox)
     {
         this.DropBox = dropBox;
-        NodeEditorWindow.AutoSave();
+        NodeEditor.AutoSave();
     }
 }

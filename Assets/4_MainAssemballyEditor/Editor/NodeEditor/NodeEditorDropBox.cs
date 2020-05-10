@@ -18,7 +18,7 @@ namespace UnityEditor.NodeEditor
 
         public Vector2 centerLastFrame { get; private set; }
 
-        public override void OnGUI(NodeEditorWindow nodeEditor, int id)
+        public override void OnGUI(global::NodeEditor nodeEditor, int id)
         {
             myRect = GUILayoutUtility.GetRect(10, 10);
             GUI.Box(myRect, "");
@@ -40,7 +40,7 @@ namespace UnityEditor.NodeEditor
             }
         }
 
-        public override void ProcessEvents(NodeEditorWindow nodeEditor)
+        public override void ProcessEvents(global::NodeEditor nodeEditor)
         {
             var active = nodeEditor.activeControlSet.Get<NodeEditorGrabBox>();
         }
