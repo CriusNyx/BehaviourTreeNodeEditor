@@ -18,7 +18,7 @@ Each node corresponds to a method to execute.
 
 ### Method Binding
 Method binding happens via reflection. Nodes specify a class, method, and a set of arguments, and they are bound dynamically at runtime.
-Look to [Method Binding Documentation](../MethodBindings/Methodbinding.md)
+Look to [Method Binding Documentation](../MethodBindings/Methodbinding.md) for details
 
 ``` c#
 // This is an example of an AI method that succeeds after 1 frame has passed.
