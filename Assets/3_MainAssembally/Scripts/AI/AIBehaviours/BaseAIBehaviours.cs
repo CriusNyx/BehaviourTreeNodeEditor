@@ -171,14 +171,23 @@ public class BaseAIBehaviours : MonoBehaviour
     }
 
     [AIMethod(tooltip: "Node always succeeds")]
-    public IEnumerable<AIResult> Succeed()
+    public IEnumerable<AIResult> Succeed(AIExecutionContext context)
     {
-        Debug.Log("Succeed");
+        foreach (var child in context.children)
+        {
+            foreach(var result in child.Call(context))
+            {
+                if(result == AIResult.Running)
+                {
+                    yield return result;
+                }
+            }
+        }
         yield return AIResult.Success;
     }
 
     [AIMethod(tooltip: "Node always fails")]
-    public IEnumerable<AIResult> Failure()
+    public IEnumerable<AIResult> Failure(AIExecutionContext context)
     {
         Debug.Log("Failure");
         yield return AIResult.Failure;
@@ -234,7 +243,7 @@ public class BaseAIBehaviours : MonoBehaviour
     }
 
     [AIMethod("Prints the cell. Returns success if the cell is not null.")]
-    public IEnumerable<AIResult> PrintMemoryCell(object cell)
+    public IEnumerable<AIResult> PrintMemoryCell(AIExecutionContext context, object cell)
     {
         Debug.Log($"Printing Cell: {cell?.ToString()}");
         if (cell != null)

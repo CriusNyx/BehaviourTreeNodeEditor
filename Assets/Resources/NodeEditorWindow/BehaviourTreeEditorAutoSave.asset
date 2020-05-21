@@ -26,70 +26,71 @@ MonoBehaviour:
       data:
         windowRect:
           serializedVersion: 2
-          x: 125
-          y: 41
+          x: 139
+          y: 0
           width: 400
           height: 200
         dropBox:
           id: 4
         grabBoxes:
         - id: 5
+        - id: 6
         openBox:
-          id: 6
-        data:
           id: 7
+        data:
+          id: 8
         guid: 1591001730
     00000001:
       type: {class: NodeEditorNode, ns: , asm: MainAssemballyEditor}
       data:
         windowRect:
           serializedVersion: 2
-          x: 704
-          y: 32
-          width: 400
-          height: 200
+          x: 708
+          y: 14
+          width: 380
+          height: 216
         dropBox:
-          id: 8
+          id: 9
         grabBoxes:
-        - id: 9
+        - id: 10
         openBox:
-          id: 10
-        data:
           id: 11
+        data:
+          id: 12
         guid: 1736460364
     00000002:
       type: {class: NodeEditorNode, ns: , asm: MainAssemballyEditor}
       data:
         windowRect:
           serializedVersion: 2
-          x: 703
-          y: 303
+          x: 725
+          y: 350
           width: 325
           height: 204
         dropBox:
-          id: 12
+          id: 13
         grabBoxes: []
         openBox:
-          id: 13
-        data:
           id: 14
+        data:
+          id: 15
         guid: 265221499
     00000003:
       type: {class: NodeEditorNode, ns: , asm: MainAssemballyEditor}
       data:
         windowRect:
           serializedVersion: 2
-          x: 140
-          y: 353
+          x: 167
+          y: 328
           width: 268
           height: 191
         dropBox:
-          id: 15
+          id: 16
         grabBoxes: []
         openBox:
-          id: 16
-        data:
           id: 17
+        data:
+          id: 18
         guid: 62989493
     00000004:
       type: {class: NodeEditorDropBox, ns: UnityEditor.NodeEditor, asm: MainAssemballyEditor}
@@ -102,39 +103,46 @@ MonoBehaviour:
         Parent:
           id: 0
         dropBox:
-          id: 15
+          id: 16
     00000006:
       type: {class: NodeEditorGrabBox, ns: , asm: MainAssemballyEditor}
       data:
         Parent:
           id: 0
         dropBox:
-          id: 18
+          id: 19
     00000007:
+      type: {class: NodeEditorGrabBox, ns: , asm: MainAssemballyEditor}
+      data:
+        Parent:
+          id: 0
+        dropBox:
+          id: 20
+    00000008:
       type: {class: AITreeDefinition, ns: , asm: MainAssembally}
       data:
         name: Routine
         arguments: []
-    00000008:
+    00000009:
       type: {class: NodeEditorDropBox, ns: UnityEditor.NodeEditor, asm: MainAssemballyEditor}
       data:
         Parent:
           id: 1
-    00000009:
-      type: {class: NodeEditorGrabBox, ns: , asm: MainAssemballyEditor}
-      data:
-        Parent:
-          id: 1
-        dropBox:
-          id: 12
     0000000A:
       type: {class: NodeEditorGrabBox, ns: , asm: MainAssemballyEditor}
       data:
         Parent:
           id: 1
         dropBox:
-          id: 18
+          id: 13
     0000000B:
+      type: {class: NodeEditorGrabBox, ns: , asm: MainAssemballyEditor}
+      data:
+        Parent:
+          id: 1
+        dropBox:
+          id: 20
+    0000000C:
       type: {class: AITreeDefinition, ns: , asm: MainAssembally}
       data:
         name: SubRoutine
@@ -143,77 +151,142 @@ MonoBehaviour:
             enumClass: SystemType
             enumValue: String
           value: Message
-    0000000C:
+    0000000D:
       type: {class: NodeEditorDropBox, ns: UnityEditor.NodeEditor, asm: MainAssemballyEditor}
       data:
         Parent:
           id: 2
-    0000000D:
+    0000000E:
       type: {class: NodeEditorGrabBox, ns: , asm: MainAssemballyEditor}
       data:
         Parent:
           id: 2
         dropBox:
-          id: 18
-    0000000E:
+          id: 20
+    0000000F:
       type: {class: MethodBinding, ns: , asm: MainAssembally}
       data:
         className: BaseAIBehaviours
         methodName: PrintMemoryCell
         arguments:
-        - id: 19
-    0000000F:
+        - id: 21
+    00000010:
       type: {class: NodeEditorDropBox, ns: UnityEditor.NodeEditor, asm: MainAssemballyEditor}
       data:
         Parent:
           id: 3
-    00000010:
+    00000011:
       type: {class: NodeEditorGrabBox, ns: , asm: MainAssemballyEditor}
       data:
         Parent:
           id: 3
         dropBox:
-          id: 18
-    00000011:
+          id: 20
+    00000012:
       type: {class: MethodBinding, ns: , asm: MainAssembally}
       data:
         className: BaseAIBehaviours
         methodName: Call
         arguments:
-        - id: 20
-        - id: 21
-    00000012:
-      type: {class: , ns: , asm: }
+        - id: 22
+        - id: 23
     00000013:
+      type: {class: NodeEditorDropBox, ns: UnityEditor.NodeEditor, asm: MainAssemballyEditor}
+      data:
+        Parent:
+          id: 24
+    00000014:
+      type: {class: , ns: , asm: }
+    00000015:
       type: {class: ArgumentMethodBindingArgument, ns: , asm: MainAssembally}
       data:
         argName: cell
         identifier: Message
-    00000014:
+    00000016:
       type: {class: StaticMethodBindingArgument, ns: , asm: MainAssembally}
       data:
         argName: asset
         argValue:
-          id: 22
-    00000015:
+          id: 25
+    00000017:
       type: {class: ParamsMethodBindingArgument, ns: , asm: MainAssembally}
       data:
         argName: arguments
         names:
         - Message
         arguments:
-        - id: 23
-    00000016:
+        - id: 26
+    00000018:
+      type: {class: NodeEditorNode, ns: , asm: MainAssemballyEditor}
+      data:
+        windowRect:
+          serializedVersion: 2
+          x: 327
+          y: 337
+          width: 296
+          height: 191
+        dropBox:
+          id: 19
+        grabBoxes: []
+        openBox:
+          id: 27
+        data:
+          id: 28
+        guid: 1582549389
+    00000019:
       type: {class: UnityEngineObjectWrapper, ns: , asm: MainAssembally}
       data:
         value: {fileID: 11400000, guid: 3f6e65cbbe880c848ba182dea23ab52c, type: 2}
-    00000017:
+    0000001A:
       type: {class: StaticMethodBindingArgument, ns: , asm: MainAssembally}
       data:
         argName: Message
         argValue:
+          id: 29
+    0000001B:
+      type: {class: NodeEditorGrabBox, ns: , asm: MainAssemballyEditor}
+      data:
+        Parent:
           id: 24
-    00000018:
+        dropBox:
+          id: 20
+    0000001C:
+      type: {class: MethodBinding, ns: , asm: MainAssembally}
+      data:
+        className: BaseAIBehaviours
+        methodName: Call
+        arguments:
+        - id: 30
+        - id: 31
+    0000001D:
       type: {class: StringWrapper, ns: , asm: MainAssembally}
       data:
-        value: This is a message
+        value: 
+    0000001E:
+      type: {class: StaticMethodBindingArgument, ns: , asm: MainAssembally}
+      data:
+        argName: asset
+        argValue:
+          id: 32
+    0000001F:
+      type: {class: ParamsMethodBindingArgument, ns: , asm: MainAssembally}
+      data:
+        argName: arguments
+        names:
+        - Message
+        arguments:
+        - id: 33
+    00000020:
+      type: {class: UnityEngineObjectWrapper, ns: , asm: MainAssembally}
+      data:
+        value: {fileID: 11400000, guid: 3f6e65cbbe880c848ba182dea23ab52c, type: 2}
+    00000021:
+      type: {class: StaticMethodBindingArgument, ns: , asm: MainAssembally}
+      data:
+        argName: Message
+        argValue:
+          id: 34
+    00000022:
+      type: {class: StringWrapper, ns: , asm: MainAssembally}
+      data:
+        value: 

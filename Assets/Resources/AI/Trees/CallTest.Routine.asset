@@ -62,4 +62,4 @@ MonoBehaviour:
     00000006:
       type: {class: StringWrapper, ns: , asm: MainAssembally}
       data:
-        value: This is a message
+        value: Print Message

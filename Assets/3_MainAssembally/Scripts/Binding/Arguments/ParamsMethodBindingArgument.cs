@@ -4,6 +4,9 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
+/// <summary>
+/// A method binding argument that maps to a params field on a method.
+/// </summary>
 [Serializable]
 public class ParamsMethodBindingArgument : IMethodBindingArgument
 {

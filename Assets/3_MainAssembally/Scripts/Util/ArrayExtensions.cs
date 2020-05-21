@@ -24,6 +24,5 @@ public static class ArrayExtensions
                 last = enumerator.Current;
             }
         }
-        
     }
 }

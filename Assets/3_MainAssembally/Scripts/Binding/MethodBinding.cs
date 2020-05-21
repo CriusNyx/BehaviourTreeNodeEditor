@@ -187,15 +187,21 @@ public class MethodBinding
         return targetMethod.Invoke(component, args);
     }
 
+    private MethodInfo methodInfoCache;
+
     /// <summary>
     /// Get the method info for the target method
     /// </summary>
     /// <returns></returns>
     public MethodInfo GetMethodInfo()
     {
-        Type targetType = Type.GetType(className);
-        var targetMethod = targetType.GetMethod(methodName);
-        return targetMethod;
+        if (methodInfoCache == null)
+        {
+            Type targetType = Type.GetType(className);
+            var targetMethod = targetType.GetMethod(methodName);
+            methodInfoCache = targetMethod;
+        }
+        return methodInfoCache;
     }
 
     /// <summary>

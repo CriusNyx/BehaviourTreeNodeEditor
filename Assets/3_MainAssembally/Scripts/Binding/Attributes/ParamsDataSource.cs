@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
+/// <summary>
+/// A params data source specifies where to get type and naming information for binding a params argument in a method call.
+/// Params data sources will receive the same arguments as the method binding, and therefore params options can depend on the other method arguments.
+/// </summary>
 [AttributeUsage(AttributeTargets.Method)]
 public class ParamsDataSourceAttribute : Attribute
 {

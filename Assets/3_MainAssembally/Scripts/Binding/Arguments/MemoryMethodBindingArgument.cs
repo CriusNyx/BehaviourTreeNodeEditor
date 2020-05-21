@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
+/// <summary>
+/// Maps a cell in the method bindings memory to an argument for the method binding.
+/// </summary>
 [Serializable]
 public class MemoryMethodBindingArgument : IMethodBindingArgument
 {

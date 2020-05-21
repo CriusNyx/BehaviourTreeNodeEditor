@@ -5,22 +5,29 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-
+/// <summary>
+/// Contains additional methods for interfacing with method bindings.
+/// </summary>
 public static class MethodBindingArgument
 {
-    public static Enum GetBindingTypeFromObjectType(Type type)
+    /// <summary>
+    /// Gets the type of the binding argument for the object.
+    /// </summary>
+    /// <param name="type"></param>
+    /// <returns></returns>
+    public static Enum GetBindingArgumentTypeFromObjectType(Type type)
     {
         if (type == typeof(StaticMethodBindingArgument))
         {
-            return ChangeableMethodBindingType.Static;
+            return ChangeableMethodBindingArgumentType.Static;
         }
         else if (type == typeof(MemoryMethodBindingArgument))
         {
-            return ChangeableMethodBindingType.Memory;
+            return ChangeableMethodBindingArgumentType.Memory;
         }
         else if (type == typeof(ArgumentMethodBindingArgument))
         {
-            return ChangeableMethodBindingType.Argument;
+            return ChangeableMethodBindingArgumentType.Argument;
         }
         else if (type == typeof(ParamsMethodBindingArgument))
         {
@@ -32,11 +39,18 @@ public static class MethodBindingArgument
         }
     }
 
-    public static bool TryGetBindingTypeFromObjectType(Type type, out Enum outputType)
+    /// <summary>
+    /// Attempts to get the type of the binding argument for the object.
+    /// Returns true if it is successful.
+    /// </summary>
+    /// <param name="type"></param>
+    /// <param name="outputType"></param>
+    /// <returns></returns>
+    public static bool TryGetBindingArgumentTypeFromObjectType(Type type, out Enum outputType)
     {
         try
         {
-            outputType = GetBindingTypeFromObjectType(type);
+            outputType = GetBindingArgumentTypeFromObjectType(type);
             return true;
         }
         catch (ArgumentException)
@@ -46,6 +60,13 @@ public static class MethodBindingArgument
         }
     }
 
+    /// <summary>
+    /// Builds a method binding out of the specified method info.
+    /// </summary>
+    /// <param name="methodInfo"></param>
+    /// <param name="argumentName"></param>
+    /// <param name="bindingType"></param>
+    /// <returns></returns>
     public static IMethodBindingArgument BuildArgumentOfType(MethodInfo methodInfo, string argumentName, Enum bindingType)
     {
         ParameterInfo argInfo = methodInfo.GetParameters().FirstOrDefault(x => x.Name == argumentName);
@@ -59,17 +80,24 @@ public static class MethodBindingArgument
         return BuildArgumentOfType(argumentName, type, bindingType);
     }
 
+    /// <summary>
+    /// Builds a method binding argument for the specified argument of the specified type
+    /// </summary>
+    /// <param name="argumentName"></param>
+    /// <param name="type"></param>
+    /// <param name="bindingType"></param>
+    /// <returns></returns>
     public static IMethodBindingArgument BuildArgumentOfType(string argumentName, Type type, Enum bindingType)
     {
-        if (bindingType is ChangeableMethodBindingType changable)
+        if (bindingType is ChangeableMethodBindingArgumentType changable)
         {
             switch (bindingType)
             {
-                case ChangeableMethodBindingType.Static:
+                case ChangeableMethodBindingArgumentType.Static:
                     return new StaticMethodBindingArgument(argumentName, GetDefault.GetDefaultValueFromType(type));
-                case ChangeableMethodBindingType.Memory:
+                case ChangeableMethodBindingArgumentType.Memory:
                     return new MemoryMethodBindingArgument(argumentName);
-                case ChangeableMethodBindingType.Argument:
+                case ChangeableMethodBindingArgumentType.Argument:
                     return new ArgumentMethodBindingArgument(argumentName);
             }
         }
@@ -82,10 +110,5 @@ public static class MethodBindingArgument
             }
         }
         throw new ArgumentException($"Unknown binding type {bindingType}");
-    }
-
-    public static IMethodBindingArgument BuildParamsType(string argumentName, Type type)
-    {
-        return new ParamsMethodBindingArgument(argumentName);
     }
 }

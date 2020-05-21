@@ -4,6 +4,10 @@ using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
+/// <summary>
+/// Gets an argument from the method bindings execution context and maps it to an argument for the method call.
+/// </summary>
+[Serializable]
 public class ArgumentMethodBindingArgument : IMethodBindingArgument
 {
     [SerializeField]

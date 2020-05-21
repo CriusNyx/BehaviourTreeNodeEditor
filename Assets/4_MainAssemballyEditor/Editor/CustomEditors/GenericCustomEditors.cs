@@ -137,14 +137,14 @@ public static class GenericCustomEditors
     {
         change = false;
 
-        bool result = MethodBindingArgument.TryGetBindingTypeFromObjectType(argument.GetType(), out Enum bindingType);
+        bool result = MethodBindingArgument.TryGetBindingArgumentTypeFromObjectType(argument.GetType(), out Enum bindingType);
 
         if (result)
         {
-            if (bindingType is ChangeableMethodBindingType changeable)
+            if (bindingType is ChangeableMethodBindingArgumentType changeable)
             {
                 var newBindingType =
-                    (ChangeableMethodBindingType)EditorGUILayout.EnumPopup(
+                    (ChangeableMethodBindingArgumentType)EditorGUILayout.EnumPopup(
                         changeable,
                         GUILayout.Width(70));
 
