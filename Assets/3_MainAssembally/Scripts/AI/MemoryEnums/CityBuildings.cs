@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DynamicBinding;
 
-
-[BindableEnum]
-public enum CityBuildings
+namespace GameEngine.AI
 {
-    PoliceStation,
-    Bar,
-    GasStation,
-    SomeBuilding
+    [BindableEnum]
+    public enum CityBuildings
+    {
+        PoliceStation,
+        Bar,
+        GasStation,
+        SomeBuilding
+    }
 }

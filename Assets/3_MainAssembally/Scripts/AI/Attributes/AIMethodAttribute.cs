@@ -3,31 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Reflection;
+using DynamicBinding;
 
-[AttributeUsage(validOn: AttributeTargets.Method)]
-public class AIMethodAttribute : BindableMethodAttribute
+namespace GameEngine.AI
 {
-    public readonly string tooltip;
-
-    public AIMethodAttribute(string tooltip = "") : base("context")
+    [AttributeUsage(validOn: AttributeTargets.Method)]
+    public class AIMethodAttribute : BindableMethodAttribute
     {
-        this.tooltip = tooltip;
-    }
+        public readonly string tooltip;
 
-    public override bool IsValid(MethodInfo ownerMethod, out Exception e)
-    {
-        List<string> errors = new List<string>();
-
-        if (!ValidateMethodHasArg(ownerMethod, typeof(AIExecutionContext), "context", out string e1))
+        public AIMethodAttribute(string tooltip = "") : base("context")
         {
-            errors.Add(e1);
+            this.tooltip = tooltip;
         }
 
-        if(!ValidateMethodReturn(ownerMethod, typeof(IEnumerable<AIResult>), out string e2))
+        public override bool IsValid(MethodInfo ownerMethod, out Exception e)
         {
-            errors.Add(e2);
-        }
+            List<string> errors = new List<string>();
 
-        return ConditionallyReturnError($"{ownerMethod.DeclaringType.Name}.{ownerMethod.Name} Did not validate", errors, out e);
+            if (!ValidateMethodHasArg(ownerMethod, typeof(AIExecutionContext), "context", out string e1))
+            {
+                errors.Add(e1);
+            }
+
+            if (!ValidateMethodReturn(ownerMethod, typeof(IEnumerable<AIResult>), out string e2))
+            {
+                errors.Add(e2);
+            }
+
+            return ConditionallyReturnError($"{ownerMethod.DeclaringType.Name}.{ownerMethod.Name} Did not validate", errors, out e);
+        }
     }
 }

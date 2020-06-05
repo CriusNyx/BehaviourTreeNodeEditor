@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIExecutionContext
+namespace GameEngine.AI
 {
-    public readonly GameObject gameObject;
-    public readonly AIExecutionLog log;
-    public readonly AITreeNode[] children;
-    public readonly TreeArguments memoryMap;
-
-    public AIExecutionContext(GameObject gameObject, AIExecutionLog log, AITreeNode[] children, TreeArguments memoryMap)
+    public class AIExecutionContext
     {
-        this.gameObject = gameObject;
-        this.log = log;
-        this.children = children;
-        this.memoryMap = memoryMap;
+        public readonly GameObject gameObject;
+        public readonly AIExecutionLog log;
+        public readonly AITreeNode[] children;
+        public readonly TreeArguments memoryMap;
+
+        public AIExecutionContext(GameObject gameObject, AIExecutionLog log, AITreeNode[] children, TreeArguments memoryMap)
+        {
+            this.gameObject = gameObject;
+            this.log = log;
+            this.children = children;
+            this.memoryMap = memoryMap;
+        }
     }
 }

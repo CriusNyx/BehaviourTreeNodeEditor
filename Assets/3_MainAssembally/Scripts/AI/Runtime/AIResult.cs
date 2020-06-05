@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum AIResult
+namespace GameEngine.AI
 {
-    Success,
-    Failure,
-    Running
+    public enum AIResult
+    {
+        Success,
+        Failure,
+        Running
+    }
 }

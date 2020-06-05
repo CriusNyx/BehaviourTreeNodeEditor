@@ -5,6 +5,8 @@ using UnityEditor;
 using System;
 using System.Reflection;
 using System.Linq;
+using DynamicBinding;
+using GameEngine.AI;
 
 /// <summary>
 /// Logic for finding generic editors for objects

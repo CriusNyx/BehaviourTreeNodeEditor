@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DynamicBinding;
 
-[BindableEnum]
-public enum BasicMemory
+namespace GameEngine.AI
 {
-    LastKnownPlayerPosition
+    [BindableEnum]
+    public enum BasicMemory
+    {
+        LastKnownPlayerPosition
+    }
 }

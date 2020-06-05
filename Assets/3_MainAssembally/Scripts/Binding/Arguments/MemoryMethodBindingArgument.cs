@@ -1,54 +1,58 @@
-﻿using System;
+﻿using DynamicBinding.Wrappers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 
-/// <summary>
-/// Maps a cell in the method bindings memory to an argument for the method binding.
-/// </summary>
-[Serializable]
-public class MemoryMethodBindingArgument : IMethodBindingArgument
+namespace DynamicBinding
 {
-    public string argName;
-    public string ArgName => argName;
-
-    EnumWrapper wrapper = new EnumWrapper(null);
-
-    public Enum ArgumentKey
+    /// <summary>
+    /// Maps a cell in the method bindings memory to an argument for the method binding.
+    /// </summary>
+    [Serializable]
+    public class MemoryMethodBindingArgument : IMethodBindingArgument
     {
-        get => wrapper?.value;
-        set => wrapper = new EnumWrapper(value);
-    }
+        public string argName;
+        public string ArgName => argName;
 
-    public MemoryMethodBindingArgument()
-    {
+        EnumWrapper wrapper = new EnumWrapper(null);
 
-    }
-
-    public MemoryMethodBindingArgument(ParameterInfo parameterInfo) : this(parameterInfo.Name)
-    {
-    }
-
-    public MemoryMethodBindingArgument(string argumentName)
-    {
-        this.argName = argumentName;
-    }
-
-    public object GetArgValue(IReadOnlyDictionary<object, object> memoryMap)
-    {
-        try
+        public Enum ArgumentKey
         {
-            return memoryMap[ArgumentKey];
+            get => wrapper?.value;
+            set => wrapper = new EnumWrapper(value);
         }
-        catch
+
+        public MemoryMethodBindingArgument()
         {
-            return null;
+
         }
-    }
 
-    public void Validate(MethodBindingValidationContext validation)
-    {
+        public MemoryMethodBindingArgument(ParameterInfo parameterInfo) : this(parameterInfo.Name)
+        {
+        }
 
+        public MemoryMethodBindingArgument(string argumentName)
+        {
+            this.argName = argumentName;
+        }
+
+        public object GetArgValue(IReadOnlyDictionary<object, object> memoryMap)
+        {
+            try
+            {
+                return memoryMap[ArgumentKey];
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public void Validate(MethodBindingValidationContext validation)
+        {
+
+        }
     }
 }

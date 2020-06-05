@@ -1,27 +1,28 @@
-﻿
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 
-public class ParamsValidationContext : MethodBindingValidationContext
+namespace DynamicBinding
 {
-    Dictionary<string, Type> argumentTypes = new Dictionary<string, Type>();
-
-    public ParamsValidationContext(MethodBinding methodBinding, string[] paramOptions, Enum[] enumOptions, Dictionary<string, Type> argumentTypes)
-        : base(methodBinding, paramOptions, enumOptions)
+    public class ParamsValidationContext : MethodBindingValidationContext
     {
-        this.argumentTypes = argumentTypes;
-    }
+        Dictionary<string, Type> argumentTypes = new Dictionary<string, Type>();
 
-    public override Type GetTypeOfArgument(string argumentName)
-    {
-        if (argumentTypes.ContainsKey(argumentName))
+        public ParamsValidationContext(MethodBinding methodBinding, string[] paramOptions, Enum[] enumOptions, Dictionary<string, Type> argumentTypes)
+            : base(methodBinding, paramOptions, enumOptions)
         {
-            return argumentTypes[argumentName];
+            this.argumentTypes = argumentTypes;
         }
-        else
+
+        public override Type GetTypeOfArgument(string argumentName)
         {
-            return base.GetTypeOfArgument(argumentName);
+            if (argumentTypes.ContainsKey(argumentName))
+            {
+                return argumentTypes[argumentName];
+            }
+            else
+            {
+                return base.GetTypeOfArgument(argumentName);
+            }
         }
     }
 }

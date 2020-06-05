@@ -1,29 +1,32 @@
 ﻿using System;
 using System.Linq;
 
-public class MethodBindingValidationContext
+namespace DynamicBinding
 {
-    public readonly MethodBinding methodBinding;
-    public readonly string[] paramOptions;
-    public readonly Enum[] enumOptions;
-
-    public MethodBindingValidationContext(MethodBinding methodBinding, string[] paramOptions, Enum[] enumOptions)
+    public class MethodBindingValidationContext
     {
-        this.methodBinding = methodBinding;
-        this.paramOptions = paramOptions;
-        this.enumOptions = enumOptions;
-    }
+        public readonly MethodBinding methodBinding;
+        public readonly string[] paramOptions;
+        public readonly Enum[] enumOptions;
 
-    public virtual Type GetTypeOfArgument(string argumentName)
-    {
-        try
+        public MethodBindingValidationContext(MethodBinding methodBinding, string[] paramOptions, Enum[] enumOptions)
         {
-            var info = methodBinding?.GetMethodInfo();
-            return info?.GetParameters()?.FirstOrDefault(x => x.Name == argumentName)?.ParameterType;
+            this.methodBinding = methodBinding;
+            this.paramOptions = paramOptions;
+            this.enumOptions = enumOptions;
         }
-        catch
+
+        public virtual Type GetTypeOfArgument(string argumentName)
         {
-            return null;
+            try
+            {
+                var info = methodBinding?.GetMethodInfo();
+                return info?.GetParameters()?.FirstOrDefault(x => x.Name == argumentName)?.ParameterType;
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

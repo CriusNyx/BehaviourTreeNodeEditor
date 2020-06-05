@@ -1,31 +1,34 @@
 ﻿using System;
 
-[TypeEnum(typeof(ResolveSystemType), nameof(ResolveSystemType.ResolveType))]
-public enum SystemType
+namespace DynamicBinding
 {
-    Int,
-    String,
-    Float,
-}
-
-public static class ResolveSystemType
-{
-    public static Type ResolveType(Enum value)
+    [TypeEnum(typeof(ResolveSystemType), nameof(ResolveSystemType.ResolveType))]
+    public enum SystemType
     {
-        if(value is SystemType systemType)
+        Int,
+        String,
+        Float,
+    }
+
+    public static class ResolveSystemType
+    {
+        public static Type ResolveType(Enum value)
         {
-            switch (systemType)
+            if (value is SystemType systemType)
             {
-                case SystemType.Int:
-                    return typeof(int);
-                case SystemType.Float:
-                    return typeof(float);
-                case SystemType.String:
-                    return typeof(string);
-                default:
-                    return null;
+                switch (systemType)
+                {
+                    case SystemType.Int:
+                        return typeof(int);
+                    case SystemType.Float:
+                        return typeof(float);
+                    case SystemType.String:
+                        return typeof(string);
+                    default:
+                        return null;
+                }
             }
+            return null;
         }
-        return null;
     }
 }

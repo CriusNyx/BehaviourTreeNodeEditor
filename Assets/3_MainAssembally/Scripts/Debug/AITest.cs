@@ -2,27 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AITest : MonoBehaviour
+namespace GameEngine.AI
 {
-    public AITreeAsset aiTreeAsset;
-
-    AIMemory myMemory, parentMemory;
-
-    void Start()
+    public class AITest : MonoBehaviour
     {
-        myMemory = gameObject.AddComponent<AIMemory>();
-        myMemory.Set(BasicMemory.LastKnownPlayerPosition, 3f, "Child Cell");
+        public AITreeAsset aiTreeAsset;
 
-        parentMemory = gameObject.transform.parent.gameObject.AddComponent<AIMemory>();
+        AIMemory myMemory, parentMemory;
 
-        StartCoroutine(MemoryRoutine());
+        void Start()
+        {
+            myMemory = gameObject.AddComponent<AIMemory>();
+            myMemory.Set(BasicMemory.LastKnownPlayerPosition, 3f, "Child Cell");
 
-        AIExecutor.Exec(gameObject, aiTreeAsset, new Dictionary<string, object>() { { "Foo", "This is foo" } });
-    }
+            parentMemory = gameObject.transform.parent.gameObject.AddComponent<AIMemory>();
 
-    private IEnumerator MemoryRoutine()
-    {
-        yield return new WaitForSeconds(0.5f);
-        parentMemory.Set(BasicMemory.LastKnownPlayerPosition, 1f, "Parent Cell");
+            StartCoroutine(MemoryRoutine());
+
+            AIExecutor.Exec(gameObject, aiTreeAsset, new Dictionary<string, object>() { { "Foo", "This is foo" } });
+        }
+
+        private IEnumerator MemoryRoutine()
+        {
+            yield return new WaitForSeconds(0.5f);
+            parentMemory.Set(BasicMemory.LastKnownPlayerPosition, 1f, "Parent Cell");
+        }
     }
 }

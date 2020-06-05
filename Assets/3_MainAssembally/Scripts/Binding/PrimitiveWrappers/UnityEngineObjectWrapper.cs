@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 
-public class UnityEngineObjectWrapper : PrimitiveWrapper
+namespace DynamicBinding.Wrappers
 {
-    public Object value;
-
-    public UnityEngineObjectWrapper(Object value)
+    public class UnityEngineObjectWrapper : PrimitiveWrapper
     {
-        this.value = value;
-    }
+        public Object value;
 
-    public override object Value => value;
+        public UnityEngineObjectWrapper(Object value)
+        {
+            this.value = value;
+        }
+
+        public override object Value => value;
+    }
 }

@@ -8,76 +8,29 @@ using Debug = UnityEngine.Debug;
 
 public class VoxelTest : MonoBehaviour
 {
-    public int voxelsPerUnit = 4;
-    public float actorHeight = 2f;
+    Collider[] colliders;
+    NavigationMesh mesh;
 
-    public bool done = false;
-
-    public int actorHeightInVoxels
+    public void Start()
     {
-        get
+        mesh = gameObject.AddComponent<NavigationMesh>();
+
+        foreach (var collider in gameObject.GetComponentsInChildren<Collider>())
         {
-            return Mathf.CeilToInt(actorHeight * voxelsPerUnit);
-        }
-    }
-
-    private void Start()
-    {
-        StartCoroutine(ProcessVoxels());
-    }
-
-    private IEnumerator ProcessVoxels()
-    {
-        var set = new VoxelSet<int>(1f / voxelsPerUnit, Vector3.one * (1f / voxelsPerUnit) / 2f);
-
-        Stopwatch stopwatch = new Stopwatch();
-        stopwatch.Start();
-
-        Dictionary<NavMeshCell, List<MeshRenderer>> renderersPerCell = new Dictionary<NavMeshCell, List<MeshRenderer>>();
-
-        foreach (var renderer in gameObject.GetComponentsInChildren<MeshRenderer>())
-        {
-            var bounds = renderer.bounds;
-
-            foreach (var cell in NavMeshCell.GetCellsInBounds(renderer.bounds))
-            {
-                DebugDraw.Box(renderer.bounds.center, Quaternion.identity, renderer.bounds.size);
-                cell.Draw();
-
-                if (!renderersPerCell.ContainsKey(cell))
-                {
-                    renderersPerCell.Add(cell, new List<MeshRenderer>());
-                }
-                renderersPerCell[cell].Add(renderer);
-
-                // Check stopwatch
-                if (stopwatch.ElapsedMilliseconds >= 2)
-                {
-                    yield return null;
-                    stopwatch.Restart();
-                }
-            }
+            NavMeshTracker.Create(collider.gameObject, mesh);
         }
 
-        foreach (var element in renderersPerCell)
-        {
-            var routine
-                = element.Key.Generate(
-                    element.Value.ToArray(),
-                    new NavMeshGenerationSettings(
-                        set.orientation,
-                        8,
-                        16,
-                        4,
-                        8));
-
-            yield return routine;
-        }
-
-        done = true;
+        //colliders = gameObject.GetComponentsInChildren<Collider>();
     }
 
-    private void Update()
+    public void Update()
     {
+        //foreach(var coll in colliders)
+        //{
+        //    foreach (var cell in mesh.GetCellsInBounds(coll.bounds, Quaternion.identity, true))
+        //    {
+        //        cell.Draw();
+        //    }
+        //}
     }
 }
