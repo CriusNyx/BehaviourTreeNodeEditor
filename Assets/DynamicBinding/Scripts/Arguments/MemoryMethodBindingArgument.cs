@@ -16,6 +16,7 @@ namespace DynamicBinding
         public string argName;
         public string ArgName => argName;
 
+        [SerializeField]
         EnumWrapper wrapper = new EnumWrapper(null);
 
         public Enum ArgumentKey

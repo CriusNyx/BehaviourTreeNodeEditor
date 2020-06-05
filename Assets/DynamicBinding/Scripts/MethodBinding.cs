@@ -199,7 +199,8 @@ namespace DynamicBinding
         {
             if (methodInfoCache == null)
             {
-                Type targetType = Type.GetType(className);
+                //Type targetType = Type.GetType(className);
+                Type targetType = GlobalType.GetType(className);
                 var targetMethod = targetType.GetMethod(methodName);
                 methodInfoCache = targetMethod;
             }

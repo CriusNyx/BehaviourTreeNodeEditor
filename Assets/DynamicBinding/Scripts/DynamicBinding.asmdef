@@ -1,9 +1,6 @@
 {
-    "name": "MainAssembally",
+    "name": "DynamicBinding",
     "references": [
-        "GUID:8bd07b2ba8a0d7148aef79ebfd7df787",
-        "GUID:07d5ceb070d9f36479300d0e3bfc815d",
-        "GUID:ec169f5b0ca8e7742888dfd394605b6c",
         "GUID:c53c3040b85fd184f987d232efd90f9e"
     ],
     "includePlatforms": [],

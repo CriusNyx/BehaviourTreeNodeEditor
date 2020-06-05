@@ -423,7 +423,7 @@ public class NodeEditor : EditorWindow
     public static NodeEditor OpenFile(string filepath)
     {
         NodeEditorSave save = AssetDatabase.LoadAssetAtPath<NodeEditorSave>(filepath);
-        Type saveType = Type.GetType(save?.NodeEditorType);
+        Type saveType = GlobalType.GetType(save?.NodeEditorType);
         if (saveType == null)
         {
             saveType = typeof(NodeEditor);

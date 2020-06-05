@@ -22,7 +22,7 @@ namespace DynamicBinding.Wrappers
             {
                 try
                 {
-                    return Enum.Parse(Type.GetType(enumClass), enumValue) as Enum;
+                    return Enum.Parse(GlobalType.GetType(enumClass), enumValue) as Enum;
                 }
                 catch
                 {

@@ -2,7 +2,10 @@
     "name": "MainAssemballyEditor",
     "references": [
         "GUID:0959871b179df6a4585b9aa073040967",
-        "GUID:07d5ceb070d9f36479300d0e3bfc815d"
+        "GUID:07d5ceb070d9f36479300d0e3bfc815d",
+        "GUID:7797fb6a0bf29df468cabea8ed45c95d",
+        "GUID:ec169f5b0ca8e7742888dfd394605b6c",
+        "GUID:c53c3040b85fd184f987d232efd90f9e"
     ],
     "includePlatforms": [
         "Editor"
