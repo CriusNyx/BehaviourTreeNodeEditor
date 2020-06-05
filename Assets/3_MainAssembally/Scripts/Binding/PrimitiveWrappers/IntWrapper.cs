@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IntWrapper : PrimitiveWrapper
+namespace DynamicBinding.Wrappers
 {
-    public int value;
-
-    public IntWrapper(int value)
+    public class IntWrapper : PrimitiveWrapper
     {
-        this.value = value;
-    }
+        public int value;
 
-    public override object Value => value;
+        public IntWrapper(int value)
+        {
+            this.value = value;
+        }
+
+        public override object Value => value;
+    }
 }

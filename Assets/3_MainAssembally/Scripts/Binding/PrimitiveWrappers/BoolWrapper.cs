@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class BoolWrapper : PrimitiveWrapper
+namespace DynamicBinding.Wrappers
 {
-    public bool value;
-
-    public BoolWrapper(bool value)
+    [System.Serializable]
+    public class BoolWrapper : PrimitiveWrapper
     {
-        this.value = value;
-    }
+        public bool value;
 
-    public override object Value => value;
+        public BoolWrapper(bool value)
+        {
+            this.value = value;
+        }
+
+        public override object Value => value;
+    }
 }

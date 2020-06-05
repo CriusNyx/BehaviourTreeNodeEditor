@@ -1,23 +1,27 @@
-﻿using System.Collections;
+﻿using GameEngine.AI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(AITest))]
-public class AITestEditor : Editor
+namespace GameEngine.AIEditor
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(AITest))]
+    public class AITestEditor : Editor
     {
-        var aiTest = target as AITest;
-
-        DrawDefaultInspector();
-
-        GUILayout.Box("", GUILayout.Height(2), GUILayout.ExpandWidth(true));
-
-        if(aiTest?.aiTreeAsset != null)
+        public override void OnInspectorGUI()
         {
-            var treeEditor = CreateEditor(aiTest.aiTreeAsset);
-            treeEditor.OnInspectorGUI();
+            var aiTest = target as AITest;
+
+            DrawDefaultInspector();
+
+            GUILayout.Box("", GUILayout.Height(2), GUILayout.ExpandWidth(true));
+
+            if (aiTest?.aiTreeAsset != null)
+            {
+                var treeEditor = CreateEditor(aiTest.aiTreeAsset);
+                treeEditor.OnInspectorGUI();
+            }
         }
     }
 }

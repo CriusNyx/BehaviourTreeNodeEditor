@@ -13,6 +13,7 @@ namespace GeneratedCode{
             public const string AI__Trees__Save_Root2 = "AI/Trees/Save.Root2";
             public const string Foo__Foo = "Foo/Foo";
             public const string Models__Catwalk = "Models/Catwalk";
+            public const string Models__ClippingPlaneTest = "Models/ClippingPlaneTest";
             public const string Models__Wall4x3 = "Models/Wall4x3";
             public const string NodeEditorWindow__BehaviourTreeEditorAutoSave = "NodeEditorWindow/BehaviourTreeEditorAutoSave";
             public const string NodeEditorWindow__NodeEditorAutoSave = "NodeEditorWindow/NodeEditorAutoSave";

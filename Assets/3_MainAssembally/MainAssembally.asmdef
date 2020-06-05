@@ -1,7 +1,8 @@
 {
     "name": "MainAssembally",
     "references": [
-        "GUID:8bd07b2ba8a0d7148aef79ebfd7df787"
+        "GUID:8bd07b2ba8a0d7148aef79ebfd7df787",
+        "GUID:07d5ceb070d9f36479300d0e3bfc815d"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
@@ -10,5 +11,6 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }

@@ -5,67 +5,70 @@ using System.Reflection;
 using System.Threading.Tasks;
 using UnityEngine;
 
-/// <summary>
-/// Executes an AI Tree at runtime
-/// </summary>
-public class AIExecutor : MonoBehaviour
+namespace GameEngine.AI
 {
-    TaskCompletionSource<AIResult> result;
-    IEnumerator<AIResult> executionTree;
-    AIResult lastResult;
-
-    public AIExecutionLog Log { get; } = new AIExecutionLog();
-    public AITreeAsset asset;
-
-    private Dictionary<string, object> arguments;
-
-    public static Task<AIResult> Exec(GameObject gameObject, AITreeAsset asset, Dictionary<string, object> arguments)
+    /// <summary>
+    /// Executes an AI Tree at runtime
+    /// </summary>
+    public class AIExecutor : MonoBehaviour
     {
-        return Exec(gameObject, asset.root, arguments, asset);
-    }
+        TaskCompletionSource<AIResult> result;
+        IEnumerator<AIResult> executionTree;
+        AIResult lastResult;
 
-    public static Task<AIResult> Exec(GameObject gameObject, AITreeNode tree, Dictionary<string, object> arguments, AITreeAsset asset = null)
-    {
-        if(gameObject.GetComponent<BaseAIBehaviours>() == null)
+        public AIExecutionLog Log { get; } = new AIExecutionLog();
+        public AITreeAsset asset;
+
+        private Dictionary<string, object> arguments;
+
+        public static Task<AIResult> Exec(GameObject gameObject, AITreeAsset asset, Dictionary<string, object> arguments)
         {
-            gameObject.AddComponent<BaseAIBehaviours>();
+            return Exec(gameObject, asset.root, arguments, asset);
         }
 
-        TaskCompletionSource<AIResult> result = new TaskCompletionSource<AIResult>();
-
-        var executor = gameObject.AddComponent<AIExecutor>();
-        executor.result = result;
-        executor.asset = asset;
-        executor.arguments = arguments;
-
-        executor.executionTree = 
-            tree
-                .Call(
-                    new AIExecutionContext(
-                        gameObject, 
-                            executor.Log,
-                            null,
-                            new TreeArguments(
-                                executor.arguments, 
-                                gameObject.GetComponent<AIMemory>())))
-                .GetEnumerator();
-
-        return result.Task;
-    }
-
-    private void Update()
-    {
-        if(executionTree != null)
+        public static Task<AIResult> Exec(GameObject gameObject, AITreeNode tree, Dictionary<string, object> arguments, AITreeAsset asset = null)
         {
-            if (executionTree.MoveNext())
+            if (gameObject.GetComponent<BaseAIBehaviours>() == null)
             {
-                lastResult = executionTree.Current;
-                
+                gameObject.AddComponent<BaseAIBehaviours>();
             }
-            else
+
+            TaskCompletionSource<AIResult> result = new TaskCompletionSource<AIResult>();
+
+            var executor = gameObject.AddComponent<AIExecutor>();
+            executor.result = result;
+            executor.asset = asset;
+            executor.arguments = arguments;
+
+            executor.executionTree =
+                tree
+                    .Call(
+                        new AIExecutionContext(
+                            gameObject,
+                                executor.Log,
+                                null,
+                                new TreeArguments(
+                                    executor.arguments,
+                                    gameObject.GetComponent<AIMemory>())))
+                    .GetEnumerator();
+
+            return result.Task;
+        }
+
+        private void Update()
+        {
+            if (executionTree != null)
             {
-                result.TrySetResult(lastResult);
-                Destroy(this);
+                if (executionTree.MoveNext())
+                {
+                    lastResult = executionTree.Current;
+
+                }
+                else
+                {
+                    result.TrySetResult(lastResult);
+                    Destroy(this);
+                }
             }
         }
     }

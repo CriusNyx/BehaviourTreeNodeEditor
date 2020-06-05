@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class StringWrapper : PrimitiveWrapper
+namespace DynamicBinding.Wrappers
 {
-    public string value;
-
-    public StringWrapper(string value)
+    [System.Serializable]
+    public class StringWrapper : PrimitiveWrapper
     {
-        this.value = value;
-    }
+        public string value;
 
-    public override object Value => value;
+        public StringWrapper(string value)
+        {
+            this.value = value;
+        }
+
+        public override object Value => value;
+    }
 }

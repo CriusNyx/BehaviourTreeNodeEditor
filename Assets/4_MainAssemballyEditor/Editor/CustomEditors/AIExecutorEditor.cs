@@ -1,21 +1,25 @@
-﻿using System.Collections;
+﻿using GameEngine.AI;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-[CustomEditor(typeof(AIExecutor))]
-public class AIExecutorEditor : Editor
+namespace GameEngine.AIEditor
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(AIExecutor))]
+    public class AIExecutorEditor : Editor
     {
-        DrawDefaultInspector();
+        public override void OnInspectorGUI()
+        {
+            DrawDefaultInspector();
 
-        AIExecutor executor = target as AIExecutor;
+            AIExecutor executor = target as AIExecutor;
 
-        GUILayout.Label(executor.Log?.ToString());
+            GUILayout.Label(executor.Log?.ToString());
 
-        if (executor.asset != null)
-            if (GUILayout.Button("View Log"))
-                BehaviourTreeEditor.OpenFile(executor.asset.sourceFileName, executor.Log);
+            if (executor.asset != null)
+                if (GUILayout.Button("View Log"))
+                    BehaviourTreeEditor.OpenFile(executor.asset.sourceFileName, executor.Log);
+        }
     }
 }

@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-public interface IMethodBindingLog
+namespace DynamicBinding
 {
-    void AppendMethodCall(string methodName);
-    void AppendArgument(string name, object value);
+    public interface IMethodBindingLog
+    {
+        void AppendMethodCall(string methodName);
+        void AppendArgument(string name, object value);
+    }
 }

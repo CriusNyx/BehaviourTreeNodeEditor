@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class FloatWrapper : PrimitiveWrapper
+namespace DynamicBinding.Wrappers
 {
-    public float value;
-
-    public FloatWrapper(float value)
+    [System.Serializable]
+    public class FloatWrapper : PrimitiveWrapper
     {
-        this.value = value;
-    }
+        public float value;
 
-    public override object Value => value;
+        public FloatWrapper(float value)
+        {
+            this.value = value;
+        }
+
+        public override object Value => value;
+    }
 }

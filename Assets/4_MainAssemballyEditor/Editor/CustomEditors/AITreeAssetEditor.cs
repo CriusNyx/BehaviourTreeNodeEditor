@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.Text.RegularExpressions;
+using GameEngine.AI;
 
-[CustomEditor(typeof(AITreeAsset))]
-public class AITreeAssetEditor : Editor
+namespace GameEngine.AIEditor
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(AITreeAsset))]
+    public class AITreeAssetEditor : Editor
     {
-        AITreeAsset asset = target as AITreeAsset;
-        GUILayout.Label(asset.ToString());
-        GUILayout.Label(asset.root?.ToString());
-        if (GUILayout.Button("Open"))
+        public override void OnInspectorGUI()
         {
-            NodeEditor.OpenFile(asset.sourceFileName);
+            AITreeAsset asset = target as AITreeAsset;
+            GUILayout.Label(asset.ToString());
+            GUILayout.Label(asset.root?.ToString());
+            if (GUILayout.Button("Open"))
+            {
+                NodeEditor.OpenFile(asset.sourceFileName);
+            }
         }
     }
 }

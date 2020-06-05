@@ -1,7 +1,8 @@
 {
     "name": "MainAssemballyEditor",
     "references": [
-        "GUID:0959871b179df6a4585b9aa073040967"
+        "GUID:0959871b179df6a4585b9aa073040967",
+        "GUID:07d5ceb070d9f36479300d0e3bfc815d"
     ],
     "includePlatforms": [
         "Editor"
@@ -12,5 +13,6 @@
     "precompiledReferences": [],
     "autoReferenced": true,
     "defineConstraints": [],
-    "versionDefines": []
+    "versionDefines": [],
+    "noEngineReferences": false
 }

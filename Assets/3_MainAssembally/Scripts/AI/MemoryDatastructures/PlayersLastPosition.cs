@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 
-public struct PlayersLastPosition
+namespace GameEngine.AI
 {
-    public readonly Vector3 position;
-    public readonly Quaternion rotation;
-
-    public PlayersLastPosition(Vector3 position, Quaternion rotation)
+    public struct PlayersLastPosition
     {
-        this.position = position;
-        this.rotation = rotation;
+        public readonly Vector3 position;
+        public readonly Quaternion rotation;
+
+        public PlayersLastPosition(Vector3 position, Quaternion rotation)
+        {
+            this.position = position;
+            this.rotation = rotation;
+        }
     }
 }

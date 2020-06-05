@@ -4,105 +4,108 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class AIMemory : MonoBehaviour, IReadOnlyDictionary<Enum, object>
+namespace GameEngine.AI
 {
-    Dictionary<Enum, (float startTime, float timeout, object value)> nodeData = new Dictionary<Enum, (float startTime, float timeout, object value)>();
-
-    public IEnumerable<Enum> Keys => throw new NotImplementedException();
-
-    public IEnumerable<object> Values => throw new NotImplementedException();
-
-    public int Count => throw new NotImplementedException();
-
-    public object this[Enum key] => Get(key).value;
-
-    public (float startTime, float timeout, object value) Get(Enum key)
+    public class AIMemory : MonoBehaviour, IReadOnlyDictionary<Enum, object>
     {
-        EvaluateKey(key);
-        if (nodeData.ContainsKey(key))
+        Dictionary<Enum, (float startTime, float timeout, object value)> nodeData = new Dictionary<Enum, (float startTime, float timeout, object value)>();
+
+        public IEnumerable<Enum> Keys => throw new NotImplementedException();
+
+        public IEnumerable<object> Values => throw new NotImplementedException();
+
+        public int Count => throw new NotImplementedException();
+
+        public object this[Enum key] => Get(key).value;
+
+        public (float startTime, float timeout, object value) Get(Enum key)
         {
-            var myData = nodeData[key];
-            var parent = GetParent();
-            if(parent == null)
+            EvaluateKey(key);
+            if (nodeData.ContainsKey(key))
             {
-                return myData;
+                var myData = nodeData[key];
+                var parent = GetParent();
+                if (parent == null)
+                {
+                    return myData;
+                }
+                else
+                {
+                    var parentData = parent.Get(key);
+                    return (parentData.startTime > myData.startTime) ? parentData : myData;
+                }
             }
             else
             {
-                var parentData = parent.Get(key);
-                return (parentData.startTime > myData.startTime) ? parentData : myData;
+                var parent = GetParent();
+                if (parent != null)
+                {
+                    return parent.Get(key);
+                }
+                else
+                {
+                    return (-1, -1, null);
+                }
             }
         }
-        else
+
+        public void Set(Enum key, float timeout, object myValue)
         {
-            var parent = GetParent();
-            if(parent != null)
+            nodeData[key] = (Time.time, timeout, myValue);
+        }
+
+        public void ResetTimeout(Enum key)
+        {
+            if (nodeData.ContainsKey(key))
             {
-                return parent.Get(key);
+                var myData = nodeData[key];
+                nodeData[key] = (Time.time, myData.timeout, myData.value);
             }
-            else
+        }
+
+        public void SetTimeout(Enum key, float timeout)
+        {
+            if (nodeData.ContainsKey(key))
             {
-                return (-1, -1, null);
+                var myData = nodeData[key];
+                nodeData[key] = (Time.time, timeout, myData.value);
             }
         }
-    }
 
-    public void Set(Enum key, float timeout, object myValue)
-    {
-        nodeData[key] = (Time.time, timeout, myValue);
-    }
-
-    public void ResetTimeout(Enum key)
-    {
-        if (nodeData.ContainsKey(key))
+        public void Remove(Enum key)
         {
-            var myData = nodeData[key];
-            nodeData[key] = (Time.time, myData.timeout, myData.value);
+            nodeData.Remove(key);
         }
-    }
 
-    public void SetTimeout(Enum key, float timeout)
-    {
-        if (nodeData.ContainsKey(key))
+        public void RemoveRecursive(Enum key)
         {
-            var myData = nodeData[key];
-            nodeData[key] = (Time.time, timeout, myData.value);
+            Remove(key);
+            GetParent()?.RemoveRecursive(key);
         }
-    }
 
-    public void Remove(Enum key)
-    {
-        nodeData.Remove(key);
-    }
-
-    public void RemoveRecursive(Enum key)
-    {
-        Remove(key);
-        GetParent()?.RemoveRecursive(key);
-    }
-
-    private void EvaluateKey(Enum key)
-    {
-        if (nodeData.ContainsKey(key))
+        private void EvaluateKey(Enum key)
         {
-            (float startTime, float timeout, object value) = nodeData[key];
-            if (Time.time > startTime + timeout)
+            if (nodeData.ContainsKey(key))
             {
-                nodeData.Remove(key);
+                (float startTime, float timeout, object value) = nodeData[key];
+                if (Time.time > startTime + timeout)
+                {
+                    nodeData.Remove(key);
+                }
             }
         }
+
+        private AIMemory GetParent()
+        {
+            return transform?.parent?.GetComponentInParent<AIMemory>();
+        }
+
+        public bool ContainsKey(Enum key) => throw new NotImplementedException();
+
+        public bool TryGetValue(Enum key, out object value) => throw new NotImplementedException();
+
+        public IEnumerator<KeyValuePair<Enum, object>> GetEnumerator() => throw new NotImplementedException();
+
+        IEnumerator IEnumerable.GetEnumerator() => throw new NotImplementedException();
     }
-
-    private AIMemory GetParent()
-    {
-        return transform?.parent?.GetComponentInParent<AIMemory>();
-    }
-
-    public bool ContainsKey(Enum key) => throw new NotImplementedException();
-
-    public bool TryGetValue(Enum key, out object value) => throw new NotImplementedException();
-
-    public IEnumerator<KeyValuePair<Enum, object>> GetEnumerator() => throw new NotImplementedException();
-
-    IEnumerator IEnumerable.GetEnumerator() => throw new NotImplementedException();
 }

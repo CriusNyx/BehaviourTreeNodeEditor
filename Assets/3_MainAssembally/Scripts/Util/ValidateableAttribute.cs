@@ -63,6 +63,20 @@ public abstract class ValidateableAttribute : Attribute
         }
     }
 
+    public static bool TypeInherritsType(Type childType, Type parentType, out string error)
+    {
+        if (parentType.IsAssignableFrom(childType))
+        {
+            error = "";
+            return true;
+        }
+        else
+        {
+            error = $"{childType.Name} does not inherrit {parentType.Name}";
+            return false;
+        }
+    }
+
     public static bool ConditionallyReturnError(string errorMessage, List<string> errors, out Exception e, Func<string, Exception> GenerateException = null)
     {
         if(GenerateException == null)

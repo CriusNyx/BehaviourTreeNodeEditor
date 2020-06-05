@@ -1,54 +1,57 @@
-﻿using System;
+﻿using DynamicBinding;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-public class AIExecutionLog : IMethodBindingLog
+namespace GameEngine.AI
 {
-    private readonly List<AILogEntry> entries = new List<AILogEntry>();
-    public IEnumerable<AILogEntry> Entires => entries;
-    AILogEntry current = null;
-
-    public void AppenTreeNode(long guid)
+    public class AIExecutionLog : IMethodBindingLog
     {
-        current = new AILogEntry(guid);
-        entries.Add(current);
-    }
+        private readonly List<AILogEntry> entries = new List<AILogEntry>();
+        public IEnumerable<AILogEntry> Entires => entries;
+        AILogEntry current = null;
 
-    public void AppendMethodCall(string methodName)
-    {
-        current.methodName = methodName;
-    }
-
-    public void AppendArgument(string name, object value)
-    {
-        if (current != null)
+        public void AppenTreeNode(long guid)
         {
-            current.LogArgument(name, value);
+            current = new AILogEntry(guid);
+            entries.Add(current);
         }
-    }
 
-    public override string ToString()
-    {
-        StringBuilder output = new StringBuilder();
-        foreach(var entry in entries)
+        public void AppendMethodCall(string methodName)
         {
-            output.AppendLine($"{entry.methodName}");
-            foreach(var arg in entry.Arguments)
+            current.methodName = methodName;
+        }
+
+        public void AppendArgument(string name, object value)
+        {
+            if (current != null)
             {
-                if (arg.argValue is AIExecutionLog)
-                {
-                    output.AppendLine($"   {arg.argName}: Log");
-                }
-                else
-                {
-                    output.AppendLine($"   {arg.argName}: {arg.argValue?.ToString()}");
-                }
+                current.LogArgument(name, value);
             }
         }
 
-        return output.ToString();
+        public override string ToString()
+        {
+            StringBuilder output = new StringBuilder();
+            foreach (var entry in entries)
+            {
+                output.AppendLine($"{entry.methodName}");
+                foreach (var arg in entry.Arguments)
+                {
+                    if (arg.argValue is AIExecutionLog)
+                    {
+                        output.AppendLine($"   {arg.argName}: Log");
+                    }
+                    else
+                    {
+                        output.AppendLine($"   {arg.argName}: {arg.argValue?.ToString()}");
+                    }
+                }
+            }
+
+            return output.ToString();
+        }
     }
 }

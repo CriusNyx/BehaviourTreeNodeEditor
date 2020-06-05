@@ -1,37 +1,39 @@
 ﻿using System;
 using UnityEngine;
 
-[Serializable]
-public class EnumWrapper
+namespace DynamicBinding.Wrappers
 {
-    [SerializeField]
-    private string enumClass;
-    [SerializeField]
-    private string enumValue;
-
-    public EnumWrapper(Enum value)
+    [Serializable]
+    public class EnumWrapper
     {
-        this.value = value;
-    }
+        [SerializeField]
+        private string enumClass;
+        [SerializeField]
+        private string enumValue;
 
-    public Enum value
-    {
-        get
+        public EnumWrapper(Enum value)
         {
-            try
+            this.value = value;
+        }
+
+        public Enum value
+        {
+            get
             {
-                return Enum.Parse(Type.GetType(enumClass), enumValue) as Enum;
+                try
+                {
+                    return Enum.Parse(Type.GetType(enumClass), enumValue) as Enum;
+                }
+                catch
+                {
+                    return null;
+                }
             }
-            catch
+            set
             {
-                return null;
+                enumClass = value?.GetType()?.ToString();
+                enumValue = value?.ToString();
             }
         }
-        set
-        {
-            enumClass = value?.GetType()?.ToString();
-            enumValue = value?.ToString();
-        }
     }
-
 }

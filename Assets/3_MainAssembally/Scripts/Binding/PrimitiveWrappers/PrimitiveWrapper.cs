@@ -2,36 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public abstract class PrimitiveWrapper
+namespace DynamicBinding.Wrappers
 {
-    public abstract object Value { get; }
-
-    public static object GetWrapper(object source)
+    [System.Serializable]
+    public abstract class PrimitiveWrapper
     {
-        if (source is int i)
+        public abstract object Value { get; }
+
+        public static object GetWrapper(object source)
         {
-            return new IntWrapper(i);
-        }
-        else if (source is bool b)
-        {
-            return new BoolWrapper(b);
-        }
-        else if (source is float f)
-        {
-            return new FloatWrapper(f);
-        }
-        else if (source is string s)
-        {
-            return new StringWrapper(s);
-        }
-        else if(source is Object o)
-        {
-            return new UnityEngineObjectWrapper(o);
-        }
-        else
-        {
-            return source;
+            if (source is int i)
+            {
+                return new IntWrapper(i);
+            }
+            else if (source is bool b)
+            {
+                return new BoolWrapper(b);
+            }
+            else if (source is float f)
+            {
+                return new FloatWrapper(f);
+            }
+            else if (source is string s)
+            {
+                return new StringWrapper(s);
+            }
+            else if (source is Object o)
+            {
+                return new UnityEngineObjectWrapper(o);
+            }
+            else
+            {
+                return source;
+            }
         }
     }
 }
