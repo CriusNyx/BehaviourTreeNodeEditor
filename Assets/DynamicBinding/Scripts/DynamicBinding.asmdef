@@ -1,17 +1,9 @@
 {
-    "name": "MainAssemballyEditor",
+    "name": "DynamicBinding",
     "references": [
-        "MainAssembally",
-        "TriangleNet",
-        "GenericCustomEditor",
-        "DynamicBinding",
-        "Validation",
-        "NodeEditor",
-        "NodeEditorScripts"
+        "GUID:c53c3040b85fd184f987d232efd90f9e"
     ],
-    "includePlatforms": [
-        "Editor"
-    ],
+    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea4cac1a1b443d438b98e8cccab64bf, type: 3}
+  m_Name: BehaviourTreeEditorAutoSave
+  m_EditorClassIdentifier: 
+  nodes:
+  - id: 0
+  - id: 1
+  filename: Assets/Resources/AI/PrintPlayerPosition.asset
+  nodeEditorType: GameEngine.AIEditor.BehaviourTreeEditor
+  references:
+    version: 1
+    00000000:
+      type: {class: NodeEditorNode, ns: , asm: NodeEditor}
+      data:
+        windowRect:
+          serializedVersion: 2
+          x: 403
+          y: 150
+          width: 400
+          height: 200
+        dropBox:
+          id: 2
+        grabBoxes:
+        - id: 3
+        openBox:
+          id: 4
+        data:
+          id: 5
+        guid: 1749996608
+    00000001:
+      type: {class: NodeEditorNode, ns: , asm: NodeEditor}
+      data:
+        windowRect:
+          serializedVersion: 2
+          x: 425
+          y: 438
+          width: 400
+          height: 200
+        dropBox:
+          id: 6
+        grabBoxes: []
+        openBox:
+          id: 7
+        data:
+          id: 8
+        guid: 1595441493
+    00000002:
+      type: {class: NodeEditorDropBox, ns: UnityEditor.NodeEditor, asm: NodeEditor}
+      data:
+        Parent:
+          id: 0
+    00000003:
+      type: {class: NodeEditorGrabBox, ns: , asm: NodeEditor}
+      data:
+        Parent:
+          id: 0
+        dropBox:
+          id: 6
+    00000004:
+      type: {class: NodeEditorGrabBox, ns: , asm: NodeEditor}
+      data:
+        Parent:
+          id: 0
+        dropBox:
+          id: 9
+    00000005:
+      type: {class: AITreeDefinition, ns: GameEngine.AI, asm: BehaviourTree}
+      data:
+        name: Root
+        arguments: []
+    00000006:
+      type: {class: NodeEditorDropBox, ns: UnityEditor.NodeEditor, asm: NodeEditor}
+      data:
+        Parent:
+          id: 1
+    00000007:
+      type: {class: NodeEditorGrabBox, ns: , asm: NodeEditor}
+      data:
+        Parent:
+          id: 1
+        dropBox:
+          id: 9
+    00000008:
+      type: {class: MethodBinding, ns: DynamicBinding, asm: DynamicBinding}
+      data:
+        className: GameEngine.AI.BaseAIBehaviours
+        methodName: PrintMemoryCell
+        arguments:
+        - id: 10
+    00000009:
+      type: {class: , ns: , asm: }
+    0000000A:
+      type: {class: MemoryMethodBindingArgument, ns: DynamicBinding, asm: DynamicBinding}
+      data:
+        argName: cell
+        wrapper:
+          enumClass: GameEngine.AI.BasicMemory
+          enumValue: LastKnownPlayerPosition

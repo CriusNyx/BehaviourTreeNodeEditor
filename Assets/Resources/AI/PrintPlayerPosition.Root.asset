@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cfd38aa13d3a2a48a83e0717eed7c52, type: 3}
+  m_Name: PrintPlayerPosition.Root
+  m_EditorClassIdentifier: 
+  definition:
+    id: 0
+  root:
+    id: 1
+  sourceFileName: Assets/Resources/AI/PrintPlayerPosition.asset
+  references:
+    version: 1
+    00000000:
+      type: {class: AITreeDefinition, ns: GameEngine.AI, asm: BehaviourTree}
+      data:
+        name: Root
+        arguments: []
+    00000001:
+      type: {class: AITreeNode, ns: GameEngine.AI, asm: BehaviourTree}
+      data:
+        methodBinding:
+          className: GameEngine.AI.BaseAIBehaviours
+          methodName: PrintMemoryCell
+          arguments:
+          - id: 2
+        children: []
+        guid: 1595441493
+    00000002:
+      type: {class: MemoryMethodBindingArgument, ns: DynamicBinding, asm: DynamicBinding}
+      data:
+        argName: cell
+        wrapper:
+          enumClass: GameEngine.AI.BasicMemory
+          enumValue: LastKnownPlayerPosition

@@ -1,13 +1,7 @@
 {
-    "name": "MainAssemballyEditor",
+    "name": "ValidationEditor",
     "references": [
-        "MainAssembally",
-        "TriangleNet",
-        "GenericCustomEditor",
-        "DynamicBinding",
-        "Validation",
-        "NodeEditor",
-        "NodeEditorScripts"
+        "Validation"
     ],
     "includePlatforms": [
         "Editor"
