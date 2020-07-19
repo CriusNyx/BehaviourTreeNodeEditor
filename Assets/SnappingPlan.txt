@@ -1,0 +1,3 @@
+Press a hotkey to snap, depending on the current tool
+	If a vertex is selected, only snap on that vertex
+Click and drag to snap (Yes, this is possible using raycasts)
