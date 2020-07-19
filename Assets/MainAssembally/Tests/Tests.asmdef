@@ -1,0 +1,18 @@
+{
+    "name": "MainAssemTests",
+    "references": [
+        "GUID:0959871b179df6a4585b9aa073040967",
+        "GUID:68dff70737e73b346a34605d74cf2fd2"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

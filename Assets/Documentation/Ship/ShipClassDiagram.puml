@@ -1,0 +1,45 @@
+@startuml Ship Classes
+
+!$le = "≤"
+!$elof = "∈"
+!$sup3 = "<sup>3</sup>"
+!$R3 = "ℝ<sup>3</sup>"
+
+!procedure $sup($value)
+<sup>$value</sup>
+!endprocedure
+
+rectangle Input{
+    class LocalSpaceShipInput{
+        + DirectionInput
+        + RotationInput
+        + GetWorldSpaceInput(transform) : WorldSpaceShipInput
+    }
+
+    class WorldSpaceShipInput{
+        + DirectionInput
+        + RotationInput
+    }
+}
+
+
+
+class Ship {
+    + ApplyInput(worldSpaceShipInput)
+    + ApplyInput(localSpaceShipInput)
+}
+
+class Part{
+}
+
+class Thruster{
+    + MaxThrust
+    + CalcEfficiency(targetDir)
+    + SetThrust(thrust)
+}
+
+Part <|-- Thruster
+
+Ship o-- Part
+
+@enduml
